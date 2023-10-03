@@ -41,6 +41,9 @@ Create user (DB commands always end with a semicolon ';' except for 'exit':
 
 > CREATE USER ‘<username>’@’localhost’ IDENTIFIED BY ‘<password>’;
 
+example: CREATE USER 'john@localhost' IDENTIFIED BY '123securepass';
+you will type out @localhost no need to put your local ip here same rules to command below.
+
 
 Grant all priveleges to user (this will be the user you connect your dev enviroment to:
 
