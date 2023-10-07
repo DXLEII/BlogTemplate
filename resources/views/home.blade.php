@@ -15,7 +15,7 @@
     </form>
 
     <div style="border: 3px solid black;">
-        <a href="{{ route('all-posts') }}">All Posts</a>
+        <a href="{{ route('all-posts') }}"><button>All Posts</button></a>
         <h2>Create Post</h2>
         <form action="/create-post" method="POST">
         @csrf
@@ -46,6 +46,9 @@
 
     <div style="border: 3px solid black;">
         <h2>Register</h2>
+        <p>Username: 3-15 characters</p>
+        <p>Email: must not already be registered</p>
+        <p>Password: 8-60 characters</p>
         <form action="/register" method="POST">
          @csrf
         <input name="name" type="text" placeholder="name">

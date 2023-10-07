@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts</title>
-    <!-- Add your CSS styles or external CSS links here -->
 </head>
 <body>
     @auth
@@ -14,7 +13,7 @@
     </form>
 
     <div style="border: 3px solid black;">
-        <a href="/">Your Posts</a>
+        <a href="/"><button>Your Posts</button></a>
         <h2>Create Post</h2>
         <form action="/create-post" method="POST">
             @csrf
