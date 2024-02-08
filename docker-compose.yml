@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    image: dxle/latkisblog:latest
+    ports:
+      - "8080:80"
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=your_database_name
+      - DB_USERNAME=your_database_username
+      - DB_PASSWORD=your_database_password
+    command: sh -c "php artisan key:generate && apache2-foreground"
+
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_database_username
+      MYSQL_PASSWORD: your_database_password
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+    ports:
+      - "3306:3306"
