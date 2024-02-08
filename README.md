@@ -75,3 +75,42 @@ https://snapcraft.io/install/dbeaver-ce/arch
 
 Be sure to run php artisan migrate after changing the .env file so laravel detects the database to link to. 
 
+# Docker Compose for running a Laravel application with MySQL database
+
+version: '3.8'
+
+services:
+  # Laravel application container
+  app:
+    image: dxle/latkisblog:latest
+    ports:
+      - "8080:80"
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=your_database_name
+      - DB_USERNAME=your_database_username
+      - DB_PASSWORD=your_database_password
+    command: sh -c "php artisan key:generate && apache2-foreground"
+
+  # MySQL database container
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_database_username
+      MYSQL_PASSWORD: your_database_password
+      MYSQL_ROOT_PASSWORD: your_mysql_root_password
+    ports:
+      - "3306:3306"
+
+# Instructions:
+# 1. Modify the environment variables under the 'app' and 'db' services to match your configuration.
+# 2. Place this Docker Compose file in the root directory of your Laravel project.
+# 3. Build and start the containers using the command: docker-compose up -d
+# 4. Access your Laravel application at http://localhost:8080
+# 5. Remember to replace 'your_database_name', 'your_database_username', 'your_database_password', and 'your_mysql_root_password' with your actual database credentials.
+# 6. Ensure that Docker and Docker Compose are installed on your system before running the above command.
+
+
