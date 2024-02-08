@@ -77,33 +77,34 @@ Be sure to run php artisan migrate after changing the .env file so laravel detec
 
 # Docker Compose for running a Laravel application with MySQL database
 
+```yaml
 version: '3.8'
 
 services:
-  # Laravel application container
-  app:
-    image: dxle/latkisblog:latest
-    ports:
-      - "8080:80"
-    environment:
-      - DB_CONNECTION=mysql
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_DATABASE=your_database_name
-      - DB_USERNAME=your_database_username
-      - DB_PASSWORD=your_database_password
-    command: sh -c "php artisan key:generate && apache2-foreground"
+app:
+image: dxle/latkisblog:latest
+ports:
+- "8080:80"
+environment:
+- DB_CONNECTION=mysql
+- DB_HOST=db
+- DB_PORT=3306
+- DB_DATABASE=your_database_name
+- DB_USERNAME=your_database_username
+- DB_PASSWORD=your_database_password
+command: sh -c "php artisan key:generate && apache2-foreground"
 
-  # MySQL database container
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: your_database_name
-      MYSQL_USER: your_database_username
-      MYSQL_PASSWORD: your_database_password
-      MYSQL_ROOT_PASSWORD: your_mysql_root_password
-    ports:
-      - "3306:3306"
+db:
+image: mysql:5.7
+environment:
+MYSQL_DATABASE: your_database_name
+MYSQL_USER: your_database_username
+MYSQL_PASSWORD: your_database_password
+MYSQL_ROOT_PASSWORD: your_mysql_root_password
+ports:
+- "3306:3306"
+```
+
 
 # Instructions:
 # 1. Modify the environment variables under the 'app' and 'db' services to match your configuration.
